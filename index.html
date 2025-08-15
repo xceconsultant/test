@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Loading…</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <p>Loading site…</p>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(reg => {
+        // If this is the first load, reload once SW takes control
+        if (!navigator.serviceWorker.controller) {
+          reg.addEventListener('updatefound', () => {
+            const nw = reg.installing;
+            nw && nw.addEventListener('statechange', () => {
+              if (nw.state === 'activated') location.reload();
+            });
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
