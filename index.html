@@ -9,7 +9,7 @@
   <p>Loading site…</p>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(reg => {
+      navigator.serviceWorker.register('/test/sw.js').then(reg => {
         // If this is the first load, reload once SW takes control
         if (!navigator.serviceWorker.controller) {
           reg.addEventListener('updatefound', () => {
